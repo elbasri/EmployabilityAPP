@@ -1,0 +1,186 @@
+Education,Years of Experience,Skills,Employability
+Bachelor,5,"Python, Data Analysis",1
+Master,3,"Machine Learning, Data Analysis",1
+Doctorate,10,"Python, Machine Learning, Data Analysis",1
+Bachelor,2,"Python, Machine Learning",0
+Master,8,"Project Management, Machine Learning",1
+Not specified,0,"",0
+Bachelor,4,"Python, Data Analysis",1
+Master,2,"Machine Learning, Data Analysis",0
+Doctorate,15,"Data Analysis, Research",1
+Bachelor,5,"Python, Data Analysis",1
+Master,3,"Machine Learning, Data Analysis",0
+Doctorate,10,"Python, Machine Learning, Data Analysis",0
+Bachelor,2,"Python, Machine Learning",0
+Master,8,"Project Management, Machine Learning",0
+Not specified,0,"",0
+Bachelor,4,"Python, Data Analysis",0
+Master,2,"Machine Learning, Data Analysis",0
+Doctorate,15,"Data Analysis, Research",1
+Associate,1,"HTML, CSS",0
+Bachelor,7,"Java, Spring Framework",1
+Master,5,"Python, R, Data Visualization",1
+Doctorate,20,"Deep Learning, Python",1
+Bachelor,3,"JavaScript, React",0
+Master,6,"Data Science, Python",1
+Doctorate,12,"Machine Learning, Data Science, AI Ethics",1
+Associate,2,"Technical Support, Hardware Troubleshooting",0
+Bachelor,10,"Project Management, Agile",1
+Master,11,"Cybersecurity, Network Security",1
+Doctorate,18,"Quantum Computing, Python",1
+Bachelor,0,"",0
+Master,1,"Intern, Machine Learning",0
+Doctorate,30,"AI Research, Neural Networks",1
+Associate,4,"Web Development, PHP, JavaScript",1
+Bachelor,8,"SQL, Database Management",1
+Master,15,"Statistics, R, Econometrics",1
+Doctorate,25,"Genomics, Bioinformatics",1
+Bachelor,3,"Customer Support, CRM Software",0
+Master,7,"Cloud Computing, AWS",1
+Doctorate,22,"Robotics, Python, C++",1
+Bachelor,5,"Python, Data Analysis",1
+Master,3,"Machine Learning, Data Analysis",1
+Doctorate,10,"Python, Machine Learning, Data Analysis",1
+Bachelor,2,"Python, Machine Learning",0
+Master,8,"Project Management, Machine Learning",1
+Not specified,0,"",0
+Bachelor,4,"Python, Data Analysis",1
+Master,2,"Machine Learning, Data Analysis",0
+Doctorate,15,"Data Analysis, Research",1
+Associate,1,"Customer Service, Communication",0
+Bachelor,7,"Java, SQL, Backend Development",0
+Master,5,"Python, R, Data Visualization, Statistics",0
+Doctorate,20,"AI, Deep Learning, Research",0
+Bachelor,3,"JavaScript, Frontend Development",0
+Master,10,"Cyber Security, Network Security",0
+Doctorate,12,"Bioinformatics, Python, Research",1
+Associate,2,"Administrative Support, Office Software",0
+Bachelor,10,"Project Management, Agile, Scrum",1
+Master,14,"Data Science, Big Data Analysis",1
+Doctorate,18,"Quantum Computing, Theoretical Physics",1
+Bachelor,0,"None",0
+Master,1,"Intern, Marketing",0
+Doctorate,30,"Advanced Computing, Neural Networks",1
+Associate,5,"Networking, Technical Support",1
+Bachelor,6,"UX/UI Design, Graphic Design",0
+Master,15,"Econometrics, Financial Analysis",1
+Doctorate,25,"Climate Science, Environmental Research",1
+Bachelor,1,"Help Desk, IT Support",0
+Master,12,"Cloud Computing, AWS, Azure",1
+Doctorate,22,"Robotics, Embedded Systems, C++",1
+Bachelor,8,"SQL, Database Administration",1
+Master,4,"Public Health, Epidemiology",0
+Doctorate,16,"Material Science, Chemistry",1
+Associate,3,"Retail Management, Sales",0
+Bachelor,9,"Civil Engineering, Construction",1
+Master,11,"Human Resources, Organizational Development",1
+Doctorate,14,"Genetics, Molecular Biology",1
+Associate,4,"Culinary Arts, Food Service Management",0
+Bachelor,5,"Electrical Engineering, Circuit Design",1
+Master,7,"Machine Learning, AI Applications",1
+Doctorate,19,"Astronomy, Astrophysics",1
+Master,3,"Cloud Computing, AWS",1
+Bachelor,2,"Java, Web Development",1
+Doctorate,7,"Physics, Research",0
+Bachelor,0,"Customer Service",0
+Master,5,"Cybersecurity, Ethical Hacking",0
+Not specified,1,"Administrative Tasks",0
+Bachelor,6,"Data Analysis, Python",0
+Master,2,"Financial Analysis, Excel",0
+Doctorate,13,"Chemical Engineering, Research",0
+Associate,3,"Nursing, Patient Care",0
+Bachelor,5,"Marketing, Digital Advertising",0
+Master,8,"Urban Planning, GIS",0
+Doctorate,21,"Clinical Psychology, Research",1
+Bachelor,4,"Electrical Engineering, PLC Programming",1
+Master,11,"Statistics, R",1
+Doctorate,17,"Artificial Intelligence, Deep Learning",1
+Associate,1,"Graphic Design, Adobe Suite",0
+Bachelor,12,"Software Engineering, System Architecture",0
+Master,14,"Biotechnology, Lab Research",0
+Doctorate,20,"Astrophysics, Data Analysis",0
+Bachelor,1,"Retail Sales, Customer Interaction",0
+Master,0,"Internship, Machine Learning",0
+Doctorate,29,"Environmental Science, Field Research",0
+Master,7,"Python, Flask, Backend Development",1
+Associate,2,"Automotive Mechanics, Diagnostics",0
+Bachelor,7,"Python, Flask, Backend Development",0
+Master,16,"Public Administration, Policy Analysis",1
+Doctorate,22,"Mathematics, Theoretical Research",1
+Bachelor,3,"Journalism, Media Production",0
+Master,9,"Operations Management, Lean Six Sigma",0
+Doctorate,18,"Biomedical Engineering, Clinical Trials",1
+Bachelor,5,"Civil Engineering, Infrastructure Projects",1
+Master,6,"Human Resources, Recruitment",1
+Doctorate,15,"Materials Science, Nanotechnology",1
+Associate,3,"Paralegal, Legal Assistance",0
+Bachelor,10,"Accounting, Financial Reporting",1
+Master,12,"Computer Science, Data Structures",1
+Doctorate,14,"Education, Curriculum Development",1
+Associate,4,"Culinary Skills, Restaurant Management",0
+Bachelor,8,"Chemistry, Quality Control",1
+Master,7,"Art and Design, Creative Direction",1
+Doctorate,19,"Economics, Econometrics",0
+Bachelor,0,"No Skills",0
+Master,1,"Intern, Business Analysis",0
+Doctorate,30,"Genetics, Genomic Research",0
+Associate,5,"Veterinary Assistance, Animal Care",0
+Bachelor,9,"Social Media, Content Creation",1
+Master,13,"Nutrition, Public Health",1
+Doctorate,16,"Physics, Computational Simulations",1
+Associate,3,"Construction, Site Supervision",0
+Bachelor,11,"Aerospace Engineering, CAD",1
+Master,10,"Forensic Science, Crime Scene Analysis",1
+Doctorate,25,"Philosophy, Academic Research",1
+Bachelor,6,"Mechanical Engineering, AutoCAD",1
+Master,8,"Sociology, Qualitative Research",0
+Doctorate,20,"Zoology, Wildlife Conservation",0
+Associate,2,"Electronics, Circuit Repair",0
+Bachelor,7,"Project Management, Agile Methodologies",0
+Master,5,"Finance, Investment Analysis",0
+Doctorate,22,"Robotics, Machine Learning",0
+Bachelor,4,"Information Technology, Network Security",0
+Master,12,"Healthcare Administration, Hospital Management",0
+Doctorate,18,"Geology, Field Studies",0
+Associate,4,"Dental Hygiene, Patient Care",1
+Bachelor,9,"Architecture, 3D Modeling",1
+Master,11,"Psychology, Clinical Counseling",1
+Doctorate,13,"Meteorology, Climate Analysis",1
+Associate,5,"Pharmacy Technician, Medication Dispensing",1
+Bachelor,8,"Political Science, Policy Research",1
+Master,7,"Theatre, Performing Arts",1
+Doctorate,30,"Marine Biology, Oceanography",1
+Bachelor,0,"Intern, General Labor",0
+Master,1,"Legal Studies, Case Preparations",0
+Doctorate,25,"Historical Research, Archival Studies",1
+Associate,6,"Fitness Training, Health Education",1
+Bachelor,4,"Electronics Engineering, Microcontrollers",0
+Master,12,"Logistics, Supply Chain Management",0
+Doctorate,15,"Veterinary Medicine, Animal Surgery",0
+Associate,3,"Hospitality, Hotel Management",0
+Bachelor,5,"Environmental Studies, Conservation",0
+Master,13,"Real Estate, Property Management",0
+Doctorate,17,"Anthropology, Field Research",1
+Associate,2,"Audio Engineering, Sound Production",0
+Bachelor,10,"Actuarial Science, Risk Analysis",0
+Master,8,"Neuroscience, Brain Research",0
+Doctorate,14,"Quantum Mechanics, Theory",0
+Associate,7,"Fashion Design, Textile Technology",1
+Bachelor,6,"Pharmacology, Drug Development",1
+Master,9,"Organic Farming, Sustainable Practices",0
+Doctorate,16,"Astronomy, Observational Research",0
+Associate,1,"Jewelry Design, Craftsmanship",0
+Bachelor,11,"Sports Management, Event Coordination",0
+Master,10,"Cognitive Science, Research",1
+Doctorate,20,"Molecular Biology, Genetic Engineering",1
+Associate,3,"Video Production, Editing",1
+Bachelor,8,"Urban Design, City Planning",1
+Master,7,"Speech Therapy, Patient Rehabilitation",1
+Doctorate,19,"Nuclear Engineering, Safety Analysis",1
+Bachelor,2,"Data Entry, Administrative Support",0
+Master,12,"Pediatric Medicine, Child Care",1
+Doctorate,15,"Optics, Photonics Research",0
+Associate,4,"Automotive Design, Concept Development",0
+Bachelor,9,"Horticulture, Plant Sciences",0
+Master,11,"Media Studies, Communications",1
+Doctorate,17,"Public Policy, Governance",1
