@@ -56,8 +56,10 @@ class JobSpider(scrapy.Spider):
         item['publication_start_date'] = date_section[0].strip()
         item['publication_end_date'] = date_section[1].strip()
         item['post_offered'] = job.xpath('.//em[contains(text(), "Postes proposés:")]/span/text()').get()
-        item['sector_activity'] = [s.strip() for s in job.xpath('.//li[contains(text(), "Secteur d\'activité")]/a/text()').getall()]
-        item['function'] = [s.strip() for s in job.xpath('.//li[contains(text(), "Fonction")]/a/text()').getall()]
+        sector_activities = [s.strip() for s in job.xpath('.//li[contains(text(), "Secteur d\'activité")]/a/text()').getall()]
+        functions = [s.strip() for s in job.xpath('.//li[contains(text(), "Fonction")]/a/text()').getall()]
+        item['sector_activity'] = [self.get_numeric_value(self.sectors_collection, sector) for sector in sector_activities]
+        item['function'] = [self.get_numeric_value(self.functions_collection, func) for func in functions]
         item['experience_required'] = [self.extract_minimum_experience(s.strip()) for s in job.xpath('.//li[contains(text(), "Expérience requise")]/a/text()').getall()]
         item['study_level_required'] = self.extract_education(job.xpath('.//li[contains(text(), "Niveau d\'étude demandé")]/a/text()').get().strip())
         item['contract_type_offered'] = job.xpath('.//li[contains(text(), "Type de contrat proposé")]/a/text()').get().strip()

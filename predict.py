@@ -6,9 +6,9 @@ base_url = 'http://localhost:5000'
 predict_url = f'{base_url}/predict'
 
 data = {
-        "Experience_Required": 1,  # Normalized value for simplicity
-        "Sector_Activity": 1,        # Example ID for the sector
-        "Function": 1,               # Example ID for the function
+        "Experience_Required": 0,
+        "Sector_Activity": "Automobile / Motos / Cycles",
+        "Function": "RH / Personnel / Formation",
         "Bac": 1,
         "Bac +2": 1,
         "Bac +3": 1,

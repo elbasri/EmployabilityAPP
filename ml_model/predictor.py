@@ -1,13 +1,11 @@
 import pandas as pd
 import numpy as np
-import re
 from pymongo import MongoClient
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-import joblib
+from sklearn.preprocessing import MinMaxScaler
+import tensorflow as tf
 from config import Config
+import os
 
 class EmploymentPredictor:
     def __init__(self):
@@ -15,88 +13,111 @@ class EmploymentPredictor:
         self.db = self.client[Config.DATABASE_NAME]
         self.jobs_collection = self.db[Config.JOBS_COLLECTION]
         self.model = None
-        self.scaler = StandardScaler()
-        self.min_max_scaler = MinMaxScaler()
+        self.scaler = MinMaxScaler()
+
+    def ensure_directory(self, directory):
+        if not os.path.exists(directory):
+            os.makedirs(directory)
 
     def extract_data(self):
-        # Fetch data from MongoDB collection
         jobs_data = list(self.jobs_collection.find({}, projection={'_id': False}))
         self.data = pd.DataFrame(jobs_data)
-        
-        # Preprocess the data immediately after extraction
         self.preprocess_data()
-        
-    def clean_text(self, text):
-        """ Clean text by removing extra spaces, newlines, and non-alphanumeric characters. """
-        return re.sub(r'\s+', ' ', str(text)).strip()
+        self.ensure_directory('debugData')
+        self.data.to_csv('debugData/extracted_data.csv', index=False)
 
     def preprocess_data(self):
-        # Clean the text fields, ensure the field exists before applying the function
-        if 'company_name' in self.data.columns:
-            self.data['Company_Name'] = self.data['company_name'].apply(self.clean_text)
-        if 'job_title' in self.data.columns:
-            self.data['Job_Title'] = self.data['job_title'].apply(self.clean_text)
+        # Flatten and convert 'experience_required' to numeric
+        self.data['experience_required'] = self.data['experience_required'].apply(
+            lambda x: np.mean([float(item) for sublist in x for item in (sublist if isinstance(sublist, list) else [sublist])]) if isinstance(x, list) else float(x)
+        )
 
-        # Extract the first relevant value from lists
-        self.data['Sector_Activity'] = self.data.get('sector_activity', pd.Series()).apply(
-            lambda x: x[0] if isinstance(x, list) and x else None
-        )
-        self.data['Function'] = self.data.get('function', pd.Series()).apply(
-            lambda x: x[0] if isinstance(x, list) and x else None
-        )
-        self.data['Experience_Required'] = self.data.get('experience_required', pd.Series()).apply(
-            lambda x: x[0][0] if isinstance(x, list) and x and isinstance(x[0], list) and x[0] else 0
-        )
-        # Normalize Experience_Required to a 0-1 scale
-        self.data['Experience_Required'] = self.min_max_scaler.fit_transform(self.data[['Experience_Required']])
+        # Concatenate list items into a single string for 'sector_activity' and 'function'
+        for col in ['sector_activity', 'function']:
+            self.data[col] = self.data[col].apply(lambda x: ', '.join(map(str, x)) if isinstance(x, list) else x)
 
-        # Normalize study_level_required into multiple columns and concat them
-        if 'study_level_required' in self.data.columns:
-            education_df = pd.json_normalize(self.data['study_level_required'])
-            self.data = pd.concat([self.data.drop('study_level_required', axis=1), education_df], axis=1)
-        else:
-            # Add default columns for education if 'study_level_required' is missing
-            for level in ['Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5', 'Doctorate']:
-                self.data[level] = 0
+        # Convert categorical data using get_dummies
+        categorical_cols = ['sector_activity', 'function', 'contract_type_offered']
+        self.data = pd.get_dummies(self.data, columns=categorical_cols)
+
+        # Handle numeric conversion for study level fields
+        for level in ['Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5', 'Doctorate']:
+            self.data[level] = self.data['study_level_required'].apply(lambda x: float(x.get(level, 0)) if isinstance(x, dict) else 0)
+
+        # Identify numeric columns and convert them
+        numeric_cols = self.data.columns.drop('Employable', errors='ignore')
+        for col in numeric_cols:
+            try:
+                self.data[col] = pd.to_numeric(self.data[col], errors='coerce')  # Convert columns to numeric, coercing errors to NaN
+            except Exception as e:
+                print(f"Error converting {col} to numeric: {e}")
+
+        # Fill NaNs with zero or another appropriate value after attempting conversion
+        self.data.fillna(0, inplace=True)
+
+        # Apply MinMaxScaler
+        self.data[numeric_cols] = self.scaler.fit_transform(self.data[numeric_cols])
+
+        self.data.to_csv('debugData/preprocessed_data.csv', index=False)
+        print("Data preprocessed and saved to 'debugData/preprocessed_data.csv'.")
+
+
+
 
     def split_data(self):
-        features = ['Experience_Required', 'Sector_Activity', 'Function', 'Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5', 'Doctorate']
+        features = self.data.columns.drop('Employable')
         X = self.data[features]
         y = self.data['Employable']
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        self.X_train = self.scaler.fit_transform(self.X_train)
-        self.X_test = self.scaler.transform(self.X_test)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+        self.ensure_directory('debugData')
+        self.X_train.to_csv('debugData/training_data.csv', index=False)
+        self.y_train.to_csv('debugData/training_labels.csv', index=False)
+        self.X_test.to_csv('debugData/testing_data.csv', index=False)
+        self.y_test.to_csv('debugData/testing_labels.csv', index=False)
+
+    def build_model(self):
+        input_shape = self.X_train.shape[1]  # Ensures correct input shape is used
+        self.model = tf.keras.Sequential([
+            tf.keras.layers.Dense(512, activation='relu', input_shape=(input_shape,)),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.Dense(256, activation='relu'),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.Dense(1, activation='sigmoid')
+        ])
+        self.model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
     def train_model(self):
-        self.model = LogisticRegression()
-        self.model.fit(self.X_train, self.y_train)
-        print("Model training complete.")
+        if not self.model:
+            self.build_model()
+        self.model.fit(self.X_train, self.y_train, epochs=200, batch_size=64, validation_data=(self.X_test, self.y_test), callbacks=[tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)])
+        self.model.save('ml_model/trained/model.h5')
 
     def evaluate_model(self):
-        y_pred = self.model.predict(self.X_test)
-        accuracy = accuracy_score(self.y_test, y_pred)
-        print(f"Model accuracy: {accuracy}")
-        # Print coefficients
-        print("Feature coefficients:")
-        feature_names = ['Experience_Required', 'Sector_Activity', 'Function', 'Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5', 'Doctorate']
-        for name, coef in zip(feature_names, self.model.coef_[0]):
-            print(f"{name}: {coef}")
-
-    def save_model(self, path):
-        joblib.dump(self.model, path)
-        print("Model saved to", path)
+        results = self.model.evaluate(self.X_test, self.y_test)
+        print(f"Model evaluation results - Loss: {results[0]}, Accuracy: {results[1]}")
 
     def load_model(self, path):
-        self.model = joblib.load(path)
-        print("Model loaded from", path)
+        self.model = tf.keras.models.load_model(path)
+        
+    def predict(self, input_data):
+        # Convert input_data dict into DataFrame
+        input_df = pd.DataFrame([input_data])
 
+        # Preprocess data (same as during training)
+        # Dummy encode and scale the numeric columns as required
+        input_df = pd.get_dummies(input_df)
+        numeric_cols = ['Experience_Required', 'Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5', 'Doctorate']
+        input_df[numeric_cols] = self.scaler.transform(input_df[numeric_cols])
+
+        # Predict using the loaded model
+        prediction = self.model.predict(input_df)
+        predicted_class = (prediction > 0.5).astype(int)  # Assuming binary classification with a threshold of 0.5
+        return predicted_class[0][0]
+    
     def full_pipeline(self):
         self.extract_data()
         self.split_data()
         self.train_model()
         self.evaluate_model()
-
-# Example usage:
-# predictor = EmploymentPredictor()
-# predictor.full_pipeline()
-# predictor.save_model("path_to_save_model.joblib")
