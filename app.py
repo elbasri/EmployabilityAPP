@@ -11,8 +11,10 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 client = pymongo.MongoClient(Config.MONGO_URI)
 
 # Initialize the predictor and load the trained model
+# Initialize the predictor and load the trained model and scaler
 predictor = EmploymentPredictor()
-predictor.load_model('ml_model/trained/model.h5')
+predictor.load_model('ml_model/trained/model.h5', 'ml_model/trained/scaler.npz')
+
 
 @app.route('/')
 def index():
