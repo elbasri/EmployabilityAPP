@@ -6,10 +6,10 @@ base_url = 'http://localhost:5000'
 predict_url = f'{base_url}/predict'
 
 data = {
-        "experience_required": 0.3,
+        "experience_required": 0.1,
         "Bac": 1,
         "Bac +2": 1,
-        "Bac +3": 1,
+        "Bac +3": 0,
         "Bac +4": 0,
         "Bac +5": 0,
         "Doctorate": 0
