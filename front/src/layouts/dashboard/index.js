@@ -106,8 +106,8 @@ function Dashboard() {
               <TableCell align="left" sx={{ width: '5%' }}>Bac +4</TableCell>
               <TableCell align="left" sx={{ width: '5%' }}>Bac +5</TableCell>
               <TableCell align="left" sx={{ width: '5%' }}>Doctorate</TableCell>
-              <TableCell align="left" sx={{ width: '15%' }}>Experience Required</TableCell>
-              <TableCell align="left" sx={{ width: '5%' }}>Prediction</TableCell>
+              <TableCell align="left" sx={{ width: '15%' }}>Expérience requise</TableCell>
+              <TableCell align="left" sx={{ width: '5%' }}>Prédiction</TableCell>
               <TableCell align="left" sx={{ width: '15%' }}>Timestamp</TableCell>
             </TableRow>
           </TableHead>

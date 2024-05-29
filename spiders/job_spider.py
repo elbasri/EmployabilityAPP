@@ -69,20 +69,29 @@ class JobSpider(scrapy.Spider):
         matches = re.findall(r'\d+', exp_string)
         return [int(num) for num in matches] if matches else [0]
 
-    def extract_education(self, text):
+    def extract_education(text):
         """ Map educational levels to structured format. """
         levels = ['Bac', 'Bac +2', 'Bac +3', 'Bac +4', 'Bac +5', 'Doctorate']
         values = [0] * len(levels)
-        if 'Bac ' in text or 'Below Bac' in text:
-            values[0:3] = [1, 1, 1]  # Bac to Bac +3
+
+        if 'Bac' in text and 'Bac +' not in text:
+            values[0] = 1 
+
         if 'Bac +2' in text:
-            values[1:3] = [1, 1]
+            values[0:2] = [1, 1] 
+
         if 'Bac +3' in text:
-            values[2:5] = [1, 1, 1]
+            values[0:3] = [1, 1, 1]
+
         if 'Bac +4' in text:
-            values[3:6] = [1, 1, 1]
+            values[0:4] = [1, 1, 1, 1] 
+
         if 'Bac +5' in text or 'Bac +5 et plus' in text:
-            values[4:6] = [1, 1]
+            values[0:5] = [1, 1, 1, 1, 1] 
+
+        if 'Doctorat' in text or 'Doctorate' in text:
+            values[:] = [1, 1, 1, 1, 1, 1]  
+
         return dict(zip(levels, values))
 
     def create_non_employable_version(self, item):
