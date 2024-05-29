@@ -41,7 +41,7 @@ function PredictForm() {
       <MDBox mt={4} mb={3}>
         <Card>
           <MDBox p={3} textAlign="center">
-            <MDTypography variant="h4" fontWeight="medium">Submit Prediction Data</MDTypography>
+            <MDTypography variant="h4" fontWeight="medium">Soumettre les données de prédiction</MDTypography>
             <MDBox mt={2}>
               <Select
                 fullWidth
@@ -49,7 +49,7 @@ function PredictForm() {
                 onChange={(e) => setStudyLevel(e.target.value)}
                 displayEmpty
               >
-                <MenuItem value="" disabled>Select Study Level</MenuItem>
+                <MenuItem value="" disabled>Sélectionnez le niveau d'étude</MenuItem>
                 <MenuItem value="Bac">Bac</MenuItem>
                 <MenuItem value="Bac +2">Bac +2</MenuItem>
                 <MenuItem value="Bac +3">Bac +3</MenuItem>
@@ -61,7 +61,7 @@ function PredictForm() {
             <MDBox mt={2}>
               <TextField
                 fullWidth
-                label="Experience (years)"
+                label="Expérience (années)"
                 type="number"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
@@ -83,7 +83,7 @@ function PredictForm() {
             {predictionResult !== null && (
               <MDBox mt={2}>
                 <MDTypography variant="h5">
-                  Prediction Result: {predictionResult}
+                Résultat de la prédiction: {predictionResult}
                 </MDTypography>
               </MDBox>
             )}
