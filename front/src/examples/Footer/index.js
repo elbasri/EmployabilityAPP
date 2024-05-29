@@ -93,9 +93,9 @@ function Footer({ company, links }) {
 
 // Setting default values for the props of Footer
 Footer.defaultProps = {
-  company: { href: "https://github.com/elbasri/StatsProject", name: "Master 1 DS (Groupe 1)" },
+  company: { href: "https://github.com/elbasri/EmployabilityAPP", name: "Master 1 DS (ABDENNACER Elbasri)" },
   links: [
-    { href: "https://github.com/elbasri/StatsProject", name: "Github source (Documentation)" },
+    { href: "https://github.com/elbasri/EmployabilityAPP", name: "Github source (Documentation)" },
   ],
 };
 

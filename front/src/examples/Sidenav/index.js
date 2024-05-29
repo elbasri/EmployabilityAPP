@@ -182,7 +182,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       <MDBox p={2} mt="auto">
         <MDButton
           component="a"
-          href="https://github.com/elbasri/StatsProject"
+          href="https://github.com/elbasri/EmployabilityAPP"
           target="_blank"
           rel="noreferrer"
           variant="gradient"

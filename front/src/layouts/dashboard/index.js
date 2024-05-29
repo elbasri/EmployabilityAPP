@@ -51,21 +51,17 @@ function Dashboard() {
       fetchData();
   }, []);
 
+  useEffect(() => {
+    const heads = document.querySelectorAll('.css-tdxonj-MuiTableHead-root');
+    heads.forEach(head => {
+      head.classList.remove('css-tdxonj-MuiTableHead-root');
+    });
+  }, []);
+
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox>
-        {/* ... (existing code) */}
-        {/* Display the data received from the server */}
-        {dataFromServer && (
-          <div>
-            <h2>List des fichiers:</h2>
-            {/*<pre>{JSON.stringify(dataFromServer, null, 2)}</pre>*/}
-          </div>
-        )}
-        
-      </MDBox>
       <MDBox py={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={4}>
@@ -100,38 +96,40 @@ function Dashboard() {
         </Grid>
       </MDBox>
       <MDBox>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Bac</TableCell>
-                <TableCell align="right">Bac +2</TableCell>
-                <TableCell align="right">Bac +3</TableCell>
-                <TableCell align="right">Bac +4</TableCell>
-                <TableCell align="right">Bac +5</TableCell>
-                <TableCell align="right">Doctorate</TableCell>
-                <TableCell align="right">Experience Required</TableCell>
-                <TableCell align="right">Prediction</TableCell>
-                <TableCell align="right">Timestamp</TableCell>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 800 }} size="small" aria-label="a dense table" style={{ tableLayout: 'fixed' }}>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ width: '5%' }}>Bac</TableCell>
+              <TableCell align="left" sx={{ width: '5%' }}>Bac +2</TableCell>
+              <TableCell align="left" sx={{ width: '5%' }}>Bac +3</TableCell>
+              <TableCell align="left" sx={{ width: '5%' }}>Bac +4</TableCell>
+              <TableCell align="left" sx={{ width: '5%' }}>Bac +5</TableCell>
+              <TableCell align="left" sx={{ width: '5%' }}>Doctorate</TableCell>
+              <TableCell align="left" sx={{ width: '15%' }}>Experience Required</TableCell>
+              <TableCell align="left" sx={{ width: '5%' }}>Prediction</TableCell>
+              <TableCell align="left" sx={{ width: '15%' }}>Timestamp</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {predictions.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell component="td" scope="row">{row.Bac}</TableCell>
+                <TableCell align="left">{row['Bac +2']}</TableCell>
+                <TableCell align="left">{row['Bac +3']}</TableCell>
+                <TableCell align="left">{row['Bac +4']}</TableCell>
+                <TableCell align="left">{row['Bac +5']}</TableCell>
+                <TableCell align="left">{row.Doctorate}</TableCell>
+                <TableCell align="left">{row.experience_required}</TableCell>
+                <TableCell align="left">{row.prediction}</TableCell>
+                <TableCell align="left">{new Date(row.timestamp).toLocaleString()}</TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {predictions.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row">{row.Bac}</TableCell>
-                  <TableCell align="right">{row['Bac +2']}</TableCell>
-                  <TableCell align="right">{row['Bac +3']}</TableCell>
-                  <TableCell align="right">{row['Bac +4']}</TableCell>
-                  <TableCell align="right">{row['Bac +5']}</TableCell>
-                  <TableCell align="right">{row.Doctorate}</TableCell>
-                  <TableCell align="right">{row.experience_required}</TableCell>
-                  <TableCell align="right">{row.prediction}</TableCell>
-                  <TableCell align="right">{new Date(row.timestamp).toLocaleString()}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+
       </MDBox>
       <Footer />
     </DashboardLayout>

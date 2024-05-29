@@ -110,7 +110,7 @@ function DefaultNavbar({ transparent, light, action }) {
           pl={{ xs: 0, lg: 1 }}
         >
           <MDTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
-            StatsProject (Application Web d'Analyse Statistique)
+            EmployabilityAPP
           </MDTypography>
         </MDBox>
        

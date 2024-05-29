@@ -52,9 +52,9 @@ function Footer({ light }) {
           >
             &copy; {new Date().getFullYear()},
             by
-            <Link href="https://github.com/elbasri/StatsProject" target="_blank">
+            <Link href="https://github.com/elbasri/EmployabilityAPP" target="_blank">
               <MDTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
-                &nbsp;Master 1 DS (Groupe 1)&nbsp;
+                &nbsp;Master 1 DS (ABDENNACER Elbasri)&nbsp;
               </MDTypography>
             </Link>
           </MDBox>
@@ -76,7 +76,7 @@ function Footer({ light }) {
             })}
           >
             <MDBox component="li" pr={2} lineHeight={1}>
-              <Link href="https://github.com/elbasri/StatsProject" target="_blank">
+              <Link href="https://github.com/elbasri/EmployabilityAPP" target="_blank">
                 <MDTypography
                   variant="button"
                   fontWeight="regular"

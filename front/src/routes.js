@@ -43,7 +43,7 @@ import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/telecharger";
+import SignUp from "layouts/authentication/predict";
 import Results from "layouts/results";
 
 // @mui icons
@@ -70,20 +70,13 @@ const routes = [
   */
   {
     type: "collapse",
-    name: "Télécharger",
-    key: "telecharger",
+    name: "Prediction",
+    key: "predict",
     icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/telecharger",
+    route: "/authentication/predict",
     component: <SignUp />,
   },
-  {
-    type: "collapse",
-    name: "Resultats",
-    key: "results",
-    icon: <Icon fontSize="small">poll</Icon>,
-    route: "/results/:resultId", // Define the route parameter
-    component: <Results />,
-  },
+
 /*
   {
     type: "collapse",
